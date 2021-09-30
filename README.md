@@ -1,2 +1,2 @@
-# nuxtjs-components
-Components for nuxtjs
+# Components for nuxtjs (using Tailwindcss)
+Nothing here. 
