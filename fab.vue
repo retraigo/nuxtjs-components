@@ -101,12 +101,6 @@ export default {
       type: Array,
       default: null,
     },
-    FabType: {
-      type: String,
-      default() {
-        return 'main'
-      },
-    },
   },
   data() {
     return {
