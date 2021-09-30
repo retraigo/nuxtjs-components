@@ -1,4 +1,6 @@
 <!-- 
+VUE Floating Action Button
+
 - Just a copypaste of something I made for a project. 
 - Uses tailwindcss and nuxtjs. 
 - Should work for vanilla vue too with some tweaks.
