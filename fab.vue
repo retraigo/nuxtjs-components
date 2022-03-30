@@ -12,6 +12,14 @@ The prop 'nav' should be an array of objects with 'name' as text,
 file with 'navItem.name' or 'navItem.route' if you wish to use 
 them instead) and 'routeIcon' as text (you can use svg icons with
 v-html tho unicode is preferable).
+
+NavItem {
+  name: "Home",
+  route: "/",
+  key: "home",
+  routeIcon: "🏠"
+}
+
 -->
 
 <!--
@@ -28,20 +36,15 @@ The IDs 'fabButton' and 'fabItems' do nothing and you are free to remove them.
         }`"
       >
         <ul class="p-4 flex-col items-center space-y-10 w-full mx-auto">
-          <div v-for="navItem in Navigation" :key="navItem.key">
-            <a
-              v-tooltip="{
-                placement: 'left',
-                content: navItem.name,
-                trigger: 'hover',
-                classes: 'text-white font-bold text-md',
-                html: false,
-              }"
-              :href="navItem.route"
+          <div
+            v-for="navItem in Navigation"
+            :key="navItem.key"
+          >
+            <NuxtLink
+              :to="navItem.route"
               class="relative p-2 group flex items-center"
             >
-              <li
-                class="
+              <li class="
                   rounded-full
                   flex
                   items-center
@@ -49,13 +52,12 @@ The IDs 'fabButton' and 'fabItems' do nothing and you are free to remove them.
                   w-16
                   h-16
                   bg-red-600
-                "
-              >
+                ">
                 <div class="px-auto flex items-center mx-auto">
                   {{ navItem.routeIcon }}
                 </div>
               </li>
-            </a>
+            </NuxtLink>
           </div>
         </ul>
       </div>
@@ -80,8 +82,8 @@ The IDs 'fabButton' and 'fabItems' do nothing and you are free to remove them.
           }`"
           @click="toggleBoth"
         >
-          <span v-if="toggleNav">×<span/>
-          <span v-else>+<span/>
+          <span v-if="toggleNav">×</span>
+          <span v-else>+</span>
         </button>
       </div>
     </div>
@@ -99,7 +101,16 @@ export default {
   props: {
     nav: {
       type: Array,
-      default: null,
+      default: () => {
+        return [
+          {
+            name: 'Home',
+            route: '/',
+            key: 'home',
+            routeIcon: '🏠',
+          },
+        ]
+      },
     },
   },
   data() {

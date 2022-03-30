@@ -1,21 +1,22 @@
 <!--
-VUE Progress Bar (Not Animated)
+VUE Progress Bar
 
 Just a lovely, plain progress bar. You can give it whatever colors you want.
 
 The 'min' and 'max' props are optional and will default to 0 and 100 respectively.
 
-The 'progress' prop would be the current value of whatever item the bar signifies.
+The 'progress' prop would be the current value of whatever item the bar signifies. Will default to 1.
 
 The 'showPercentage' prop can be set to 'true' to show the percentage value of progress
 rounded to two decimal places.
 -->
 
 <template>
-  <div class="w-full h-4 rounded-full bg-gray-500 relative">
+  <div class="w-full h-4 rounded-full bg-gray-500 relative overflow-hidden">
     <div
       class="
         p-2
+        transition-all duration-500 ease-in-out
         h-full
         rounded-md
         bg-gradient-to-r
@@ -37,7 +38,7 @@ rounded to two decimal places.
         items-center
       "
     >
-      <span class="mx-auto">{{
+      <span v-if = "showPercentage" class="mx-auto">{{
         `${Math.round((((progress - min) * 100) / (max - min)) * 100) / 100}%`
       }}</span>
     </div>
